@@ -19,12 +19,12 @@ The project aims to model and implement the mission management processes for tea
 ## Installation
 Clone this repository to install the project:
 
-1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`\
-2.you will see 5 folders in the root folder\
-- GestionMissionApplicationBus : the application bus\
-- InsertService : the SOA composite service that wrappe the implementation of InsertService in node js\
-- LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js\
-- UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js\
+1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`
+2.you will see 5 folders in the root folder
+- GestionMissionApplicationBus : the application bus
+- InsertService : the SOA composite service that wrappe the implementation of InsertService in node js
+- LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js
+- UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js
 - SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that
 
 ## Setupe
@@ -42,8 +42,8 @@ the requirement of the project is  :
 [<img src="https://avatars.githubusercontent.com/u/101372554?v=4" width="50px">](https://github.com/houdasam)
 
 ## Usefull links
-`https://docs.oracle.com/middleware/1221/soasuite/index.html`
-`https://www.redhat.com/fr/topics/cloud-native-apps/what-is-service-oriented-architecture`
+-oracle soa suit  doc : `https://docs.oracle.com/middleware/1221/soasuite/index.html`
+-redhat soa architecture overview :  `https://www.redhat.com/fr/topics/cloud-native-apps/what-is-service-oriented-architecture`
 
 
 
