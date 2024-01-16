@@ -19,20 +19,20 @@ The project aims to model and implement the mission management processes for tea
 ## Installation
 Clone this repository to install the project:
 
-1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`
+1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`\
 2.you will see 5 folders in the root folder
-    a.GestionMissionApplicationBus : the application bus__
-    b.InsertService : the SOA composite service that wrappe the implementation of InsertService in node js __
-    c.LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js__
-    d.UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js__
-    e.SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that__
+    a.GestionMissionApplicationBus : the application bus\
+    b.InsertService : the SOA composite service that wrappe the implementation of InsertService in node js\
+    c.LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js\
+    d.UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js\
+    e.SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that\
 
 ## Setupe
 the requirement of the project is  : 
-    a.Oracle SOA Suit 12C__
-    b.node js ^18.18__
-    c.express js  ^4.18.2__
-    d.mysql db : 8.0.12__
+    a.Oracle SOA Suit 12C\
+    b.node js ^18.18\
+    c.express js  ^4.18.2\
+    d.mysql db : 8.0.12\
 
 ## Contributors
 
