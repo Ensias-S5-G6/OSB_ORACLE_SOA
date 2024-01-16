@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:composite xmlns:ns="http://xmlns.oracle.com/sca/1.0">
+    <ns:reference>
+        <ns:interface src="BusinessService:GestionMissionApplication/BusinessServices/LoadServiceRef"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:GestionMissionApplication/BusinessServices/InsertServiceRef"/>
+    </ns:reference>
+    <ns:reference>
+        <ns:interface src="BusinessService:GestionMissionApplication/BusinessServices/UpdateServiceRef"/>
+    </ns:reference>
+</ns:composite>

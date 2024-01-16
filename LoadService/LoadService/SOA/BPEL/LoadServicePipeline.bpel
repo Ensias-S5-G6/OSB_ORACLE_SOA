@@ -1,0 +1,122 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer
+
+  Created: Thu Jan 11 22:41:30 CET 2024
+  Author:  HP
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="LoadServicePipeline"
+               targetNamespace="http://xmlns.oracle.com/LoadService/LoadService/LoadServicePipeline"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/LoadService/LoadService/LoadServicePipeline"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="json">
+
+  <!--
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC
+     Set of activities coordinating the flow of messages across the
+     services integrated within this business process
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="LoadServiceInterface" bpelx:wadl="yes"/>
+    <partnerLink name="LoadServiceRef" bpelx:wadl="yes"/>
+    <partnerLink name="ComputeTauxServiceRef" bpelx:wadl="yes"/>
+  </partnerLinks>
+  <variables>
+    <variable name="int_var1" type="xsd:int"/>
+    <variable name="int_var2" type="xsd:int"/>
+    <variable name="int_var3" type="xsd:int"/>
+    <variable name="requestBody" type="xsd:string"/>
+    <variable name="responseBody" bpelx:json="object"/>
+  </variables>
+  <sequence name="main">
+    <pick name="PickLoadServiceOperations" createInstance="yes">
+      <onMessage bpelx:name="chargerMissionActuelle" partnerLink="LoadServiceInterface" variable="requestBody"
+                 bpelx:method="chargerMissionActuelle">
+        <bpelx:fromProperties>
+          <bpelx:fromProperty name="rest.query.personnel_id" variable="int_var1"/>
+        </bpelx:fromProperties>
+        <sequence name="Sequence1">
+          <invoke name="chargerMissionActuelle" partnerLink="LoadServiceRef"
+                  bpelx:method="chargerMissionActuelle" inputVariable="requestBody"
+                  outputVariable="responseBody" bpelx:invokeAsDetail="no">
+            <bpelx:toProperties>
+              <bpelx:toProperty name="rest.query.personnel_id" variable="int_var1"/>
+            </bpelx:toProperties>
+          </invoke>
+          <reply name="chargerMissionActuelle" partnerLink="LoadServiceInterface" variable="responseBody"
+                 bpelx:method="chargerMissionActuelle"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="chargerMissionNonRemboursee" partnerLink="LoadServiceInterface" variable="requestBody"
+                 bpelx:method="chargerMissionNonRemboursee">
+        <bpelx:fromProperties>
+          <bpelx:fromProperty name="rest.query.personnel_id" variable="int_var1"/>
+        </bpelx:fromProperties>
+        <sequence name="Sequence2">
+          <invoke name="chargerMissionNonRemboursee" partnerLink="LoadServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="chargerMissionNonRemboursee"
+                  bpelx:invokeAsDetail="no">
+            <bpelx:toProperties>
+              <bpelx:toProperty name="rest.query.personne_id" variable="int_var1"/>
+            </bpelx:toProperties>
+          </invoke>
+          <reply name="chargerMissionNonRemboursee" partnerLink="LoadServiceInterface" variable="responseBody"
+                 bpelx:method="chargerMissionNonRemboursee"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="chargerDemandeRemboursement" partnerLink="LoadServiceInterface" variable="requestBody"
+                 bpelx:method="chargerDemandeRemboursement">
+        <bpelx:fromProperties>
+          <bpelx:fromProperty name="rest.query.mission_id" variable="int_var1"/>
+          <bpelx:fromProperty name="rest.query.personnel_id" variable="int_var2"/>
+        </bpelx:fromProperties>
+        <sequence name="Sequence3">
+          <invoke name="chargerDemandeRemboursement" partnerLink="LoadServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="chargerDemandeRemboursement"
+                  bpelx:invokeAsDetail="no">
+            <bpelx:toProperties>
+              <bpelx:toProperty name="rest.query.demande_id" variable="int_var1"/>
+              <bpelx:toProperty name="rest.query.personnel_id" variable="int_var2"/>
+            </bpelx:toProperties>
+          </invoke>
+          <reply name="chargerDemandeRemboursement" partnerLink="LoadServiceInterface" variable="responseBody"
+                 bpelx:method="chargerDemandeRemboursement"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="chargerMontantTaux" partnerLink="LoadServiceInterface" variable="requestBody"
+                 bpelx:method="chargerMontantTaux">
+        <bpelx:fromProperties>
+          <bpelx:fromProperty name="rest.query.mission_id" variable="int_var1"/>
+          <bpelx:fromProperty name="rest.query.personnel_id" variable="int_var2"/>
+          <bpelx:fromProperty name="rest.query.type_mission" variable="int_var3"/>
+        </bpelx:fromProperties>
+        <sequence name="Sequence4">
+          <assign name="chargerMontantTaux">
+            <copy>
+              <from expressionLanguage="javascript">JSON.parse('{"message" : "compute service"}')</from>
+              <to expressionLanguage="javascript">process.responseBody</to>
+            </copy>
+          </assign>
+          <invoke name="chargerMontantTaux" partnerLink="ComputeTauxServiceRef"
+                  bpelx:method="getTaux" inputVariable="requestBody"
+                  outputVariable="responseBody" bpelx:invokeAsDetail="no">
+            <bpelx:toProperties>
+              <bpelx:toProperty name="rest.query.numberTaux" variable="int_var3"/>
+            </bpelx:toProperties>
+          </invoke>
+          <reply name="chargerMontantTaux" partnerLink="LoadServiceInterface" variable="responseBody"
+                 bpelx:method="chargerMontantTaux"/>
+        </sequence>
+      </onMessage>
+    </pick>
+  </sequence>
+</process>

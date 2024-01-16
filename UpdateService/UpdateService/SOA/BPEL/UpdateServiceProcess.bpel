@@ -1,0 +1,59 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer
+
+  Created: Thu Jan 11 20:48:10 CET 2024
+  Author:  HP
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="UpdateServiceProcess"
+               targetNamespace="http://xmlns.oracle.com/UpdateService/UpdateService/UpdateServiceProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/UpdateService/UpdateService/UpdateServiceProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable" xmlns:ns1="json">
+
+  <!--
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC
+     Set of activities coordinating the flow of messages across the
+     services integrated within this business process
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="UpdateServiceInterface" bpelx:wadl="yes"/>
+    <partnerLink name="UpdateServiceRef" bpelx:wadl="yes"/>
+  </partnerLinks>
+  <variables>
+    <variable name="requestBody" bpelx:json="object"/>
+    <variable name="responseBody" bpelx:json="object"/>
+  </variables>
+  <sequence name="main">
+    <pick name="PickUpdateServiceOperations" createInstance="yes">
+      <onMessage bpelx:name="updtaeEtatDemande" partnerLink="UpdateServiceInterface" variable="requestBody"
+                 bpelx:method="updtaeEtatDemande">
+        <sequence name="Sequence1">
+          <invoke name="updtaeEtatDemande" partnerLink="UpdateServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="updtaeEtatDemande"
+                  bpelx:invokeAsDetail="no"/>
+          <reply name="updtaeEtatDemande" partnerLink="UpdateServiceInterface" variable="responseBody"
+                 bpelx:method="updtaeEtatDemande"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="updateEtatRemboursement" partnerLink="UpdateServiceInterface" variable="requestBody"
+                 bpelx:method="updateEtatRemboursement">
+        <sequence name="Sequence2">
+          <invoke name="updateEtatRemboursement" partnerLink="UpdateServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="updateEtatRemboursement"
+                  bpelx:invokeAsDetail="no"/>
+          <reply name="updateEtatRemboursement" partnerLink="UpdateServiceInterface" variable="responseBody"
+                 bpelx:method="updateEtatRemboursement"/>
+        </sequence>
+      </onMessage>
+    </pick>
+  </sequence>
+</process>

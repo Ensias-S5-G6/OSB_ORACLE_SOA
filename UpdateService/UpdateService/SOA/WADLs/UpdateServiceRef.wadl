@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="UpdateServiceRef">RestReference</doc>
+   <resources>
+      <resource path="/updtaeEtatDemande">
+         <method name="PUT" soa:name="updtaeEtatDemande">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/updateEtatRemboursement">
+         <method name="PUT" soa:name="updateEtatRemboursement">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+   </resources>
+</application>

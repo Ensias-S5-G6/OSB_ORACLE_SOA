@@ -1,0 +1,107 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer
+
+  Created: Thu Jan 11 12:58:08 CET 2024
+  Author:  HP
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="InsertService"
+               targetNamespace="http://xmlns.oracle.com/InsertService/InsertService/InsertService"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/InsertService/InsertService/InsertService"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="json"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns2="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/MissionDB"
+         xmlns:ns3="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/InsertDB"
+         xmlns:ns4="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/DemandeRetourDB"
+         xmlns:ns5="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/DemandeRemboursementDB"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertDB"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/DemandeMissionDB"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/db/top/DemandeMissionDB"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer"
+         xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/DemandeMissionTable"
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/db/top/DemandeMissionTable"
+         xmlns:ns11="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/SelectDemandeMission"
+         xmlns:ns12="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/InsertDemandeMission"
+         xmlns:ns13="http://xmlns.oracle.com/pcbpel/adapter/db/top/InsertDemandeMission"
+         xmlns:ns14="http://xmlns.oracle.com/pcbpel/adapter/db/top/SelectDemandeMission"
+         xmlns:ns15="http://xmlns.oracle.com/pcbpel/adapter/db/InsertService/InsertService/MissionTable"
+         xmlns:ns16="http://xmlns.oracle.com/pcbpel/adapter/db/top/MissionTable">
+
+  <!--
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC
+     Set of activities coordinating the flow of messages across the
+     services integrated within this business process
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="InsertServiceInterface" bpelx:wadl="yes"/>
+    <partnerLink name="InsertServiceRef" bpelx:wadl="yes"/>
+  </partnerLinks>
+  <variables>
+    <variable name="requestBody" bpelx:json="object"/>
+    <variable name="responseBody" bpelx:json="object"/>
+  </variables>
+  <sequence name="main">
+    <pick name="PickInsertServiceOperations" createInstance="yes">
+      <onMessage bpelx:name="insertDemandeMission" partnerLink="InsertServiceInterface" variable="requestBody"
+                 bpelx:method="insertDemandeMission">
+        <sequence name="Sequence1">
+          <invoke name="insertDemandeMission" partnerLink="InsertServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="insertDemandeMission"
+                  bpelx:invokeAsDetail="no"/>
+          <reply name="insertDemandeMission" partnerLink="InsertServiceInterface" variable="responseBody"
+                 bpelx:method="insertDemandeMission"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="insertMission" partnerLink="InsertServiceInterface" variable="requestBody"
+                 bpelx:method="insertMission">
+        <sequence name="Sequence2">
+          <invoke name="insertMission" partnerLink="InsertServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="insertMission"
+                  bpelx:invokeAsDetail="no"/>
+          <reply name="insertMission" variable="responseBody" partnerLink="InsertServiceInterface"
+                 bpelx:method="insertMission"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="InsertDemandeRetour" partnerLink="InsertServiceInterface" variable="requestBody"
+                 bpelx:method="InsertDemandeRetour">
+        <sequence name="Sequence3">
+          <invoke name="InsertDemandeRetour" partnerLink="InsertServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="InsertDemandeRetour"
+                  bpelx:invokeAsDetail="no"/>
+          <reply name="InsertDemandeRetour" variable="responseBody" partnerLink="InsertServiceInterface"
+                 bpelx:method="InsertDemandeRemboursement"/>
+        </sequence>
+      </onMessage>
+      <onMessage bpelx:name="InsertDemandeRemboursement" partnerLink="InsertServiceInterface" variable="requestBody"
+                 bpelx:method="InsertDemandeRemboursement">
+        <sequence name="Sequence4">
+          <invoke name="InsertDemandeRemboursement" partnerLink="InsertServiceRef"
+                  inputVariable="requestBody" outputVariable="responseBody" bpelx:method="InsertDemandeRemboursement"
+                  bpelx:invokeAsDetail="no"/>
+          <reply name="InsertDemandeRemboursement" partnerLink="InsertServiceInterface" variable="responseBody"
+                 bpelx:method="InsertDemandeRemboursement"/>
+        </sequence>
+      </onMessage>
+    </pick>
+  </sequence>
+</process>

@@ -1,0 +1,51 @@
+TEST DATA : 
+********************LES ENUMS **************
+1)etat_mission : {
+0 : mission en cours
+1 : mission cloturer
+}
+
+2)type_mission
+{
+
+
+}
+
+3)etat_remboursement : 
+{
+0 : non rembourser
+1 : rembourser
+
+}
+**************************INSERT SERVICE***************************
+1)insertDemandeMission
+body : 
+{
+"raison" : "une mission d'enquête sur la pedagie d'enseignement" , 
+"personNel_id" : 1
+}
+
+2)insertMission
+body : 
+{
+"raison_mission" : "une mission d'enquête sur la pedagie d'enseignement" , 
+"personNel_id" : 1 , 
+"date_depart" : "2023-04-02"
+}
+
+3)InsertDemandeRetour
+body : 
+{
+"mission_id" : 1 , 
+"personnel_id" : 1
+}
+
+4)InsertDemandeRemboursement
+body : 
+{
+"frais" : 2000.00 , 
+"personnel_id" :  1 , 
+"mission_id" : 1
+}
+
+******************************************LOAD SERVICE*****************************************

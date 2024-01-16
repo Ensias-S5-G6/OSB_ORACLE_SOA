@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?><application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="InsertServiceInterface">RestService</doc>
+   <resources base="https://localhost:7102/soa-infra/resources/default/InsertService!1.0/InsertServiceInterface">
+      <resource path="/insertDemandeMission">
+         <method name="POST" soa:name="insertDemandeMission">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/insertMission">
+         <method name="POST" soa:name="insertMission">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/InsertDemandeRetour">
+         <method name="POST" soa:name="InsertDemandeRetour">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/InsertDemandeRemboursement">
+         <method name="POST" soa:name="InsertDemandeRemboursement">
+            <request>
+               <representation mediaType="application/json"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+   </resources>
+</application>

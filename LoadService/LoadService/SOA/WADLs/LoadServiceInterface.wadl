@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="LoadServiceInterface">RestService</doc>
+   <resources>
+      <resource path="/chargerMissionActuelle">
+         <method name="GET" soa:name="chargerMissionActuelle">
+            <request>
+               <param name="personnel_id" style="query" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/chargerMissionNonRemboursee">
+         <method name="GET" soa:name="chargerMissionNonRemboursee">
+            <request>
+               <param name="personnel_id" style="query" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/chargerDemandeRemboursement">
+         <method name="GET" soa:name="chargerDemandeRemboursement">
+            <request>
+               <param name="personnel_id" style="query" type="xsd:integer"/>
+               <param name="mission_id" style="query" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+      <resource path="/chargerMontantTaux">
+         <method name="GET" soa:name="chargerMontantTaux">
+            <request>
+               <param name="personnel_id" style="query" type="xsd:integer"/>
+               <param name="mission_id" style="query" type="xsd:integer"/>
+               <param name="type_mission" style="query" type="xsd:integer"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json"/>
+            </response>
+            <response status="500"/>
+         </method>
+      </resource>
+   </resources>
+</application>
