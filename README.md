@@ -21,18 +21,18 @@ Clone this repository to install the project:
 
 1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`
 2.you will see 5 folders in the root folder
-    a-GestionMissionApplicationBus : the application bus
-    b-InsertService : the SOA composite service that wrappe the implementation of InsertService in node js 
-    c-LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js
-    d-UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js
-    e-SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that 
+    a. **GestionMissionApplicationBus : the application bus
+    b. **InsertService : the SOA composite service that wrappe the implementation of InsertService in node js 
+    c. **LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js
+    d. **UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js
+    e. **SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that 
 
 ## Setupe
 the requirement of the project is  : 
-    a-Oracle SOA Suit 12C
-    b-node js ^18.18
-    c-express js  ^4.18.2
-    d-mysql db : 8.0.12
+    a. **Oracle SOA Suit 12C
+    b. **node js ^18.18
+    c. **express js  ^4.18.2
+    d. **mysql db : 8.0.12
 
 ## Contributors
 
