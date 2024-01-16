@@ -42,8 +42,8 @@ the requirement of the project is  :
 [<img src="https://avatars.githubusercontent.com/u/101372554?v=4" width="50px">](https://github.com/houdasam)
 
 ## Usefull links
--oracle soa suit  doc : `https://docs.oracle.com/middleware/1221/soasuite/index.html`
--redhat soa architecture overview :  `https://www.redhat.com/fr/topics/cloud-native-apps/what-is-service-oriented-architecture`
+- oracle soa suit  doc : `https://docs.oracle.com/middleware/1221/soasuite/index.html`
+- redhat soa architecture overview :  `https://www.redhat.com/fr/topics/cloud-native-apps/what-is-service-oriented-architecture`
 
 
 
