@@ -27,7 +27,7 @@ Clone this repository to install the project:
 - UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js
 - SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that
 
-## Setupe
+## Setup
 the requirement of the project is  : 
 - Oracle SOA Suit 12C
 - node js ^18.18
