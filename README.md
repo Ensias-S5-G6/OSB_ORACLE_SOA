@@ -19,7 +19,7 @@ The project aims to model and implement the mission management processes for tea
 ## Installation
 Clone this repository to install the project:
 
-1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`
+1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`\
 2.you will see 5 folders in the root folder
 - GestionMissionApplicationBus : the application bus
 - InsertService : the SOA composite service that wrappe the implementation of InsertService in node js
