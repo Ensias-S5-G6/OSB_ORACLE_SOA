@@ -9,7 +9,7 @@ submit requests and monitor their status.
 ## Problematic
 The project aims to model and implement the mission management processes for teachers/administrators in a Service-Oriented Architecture (SOA) environment. The system to be developed will provide better control over all stages of managing various processes involved in mission management. Additionally, this system will digitize the processes involved in mission management by minimizing paper circulation as much as possible. It will also relieve the budget service managers of tedious and repetitive tasks related to calculating the status of amounts due for travel expenses. The system will offer several advantages, including:
 
-- Management of mission requests and reimbursements.
+- Management of mission requests and reimbursements.  
 - Storage of all requests.
 - Automatic generation of statements for amounts due for travel expenses.
 - Traceability throughout the mission management process.
@@ -21,18 +21,18 @@ Clone this repository to install the project:
 
 1.`git clone https://github.com/Ensias-S5-G6/OSB_ORACLE_SOA.git`
 2.you will see 5 folders in the root folder
-    a. **GestionMissionApplicationBus : the application bus
-    b. **InsertService : the SOA composite service that wrappe the implementation of InsertService in node js 
-    c. **LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js
-    d. **UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js
-    e. **SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that 
+    a.GestionMissionApplicationBus : the application bus__
+    b.InsertService : the SOA composite service that wrappe the implementation of InsertService in node js __
+    c.LoadService :  the SOA composite service that wrappe the implementation of LoadService in node js__
+    d.UpdateService : the SOA composite service that wrappe the implementation of UpdateService in node js__
+    e.SOA_COMPOSITE_SERVICES : the node js  implementation of InsertService , LoadService , UpdateService that__
 
 ## Setupe
 the requirement of the project is  : 
-    a. **Oracle SOA Suit 12C
-    b. **node js ^18.18
-    c. **express js  ^4.18.2
-    d. **mysql db : 8.0.12
+    a.Oracle SOA Suit 12C__
+    b.node js ^18.18__
+    c.express js  ^4.18.2__
+    d.mysql db : 8.0.12__
 
 ## Contributors
 
